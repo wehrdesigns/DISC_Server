@@ -1,0 +1,75 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} DISC Plot {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Server" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+
+<script type="text/javascript">//<![CDATA[
+
+function mouseOver(){
+    document.getElementById("xline1").style.position="absolute";
+    document.getElementById("yline1").style.position="absolute";
+}
+function mouseMove(event){
+    if (/Firefox[\/\s](\d+\.\d+)/.test(navigator.userAgent)){
+	var offsetTop = window.pageYOffset;
+	var offsetLeft = window.pageXOffset;}
+    else if (/Chrome[\/\s](\d+\.\d+)/.test(navigator.userAgent)){
+	var offsetTop = document.body.scrollTop;
+	var offsetLeft = document.body.scrollLeft;}
+    else if (/MSIE[\/\s]7.0/.test(navigator.userAgent)){
+	var offsetTop = document.body.scrollTop;
+	var offsetLeft = document.body.scrollLeft;}
+    else{
+	var offsetTop = document.documentElement.scrollTop;
+	var offsetLeft = document.documentElement.scrollLeft;}
+	
+    var y = event.clientY + offsetTop - 6;
+    var x = event.clientX + offsetLeft - 6;
+
+    document.getElementById("xline1").style.top=y+"px";
+    document.getElementById("yline1").style.left=x+"px";
+
+//    document.getElementById("x").innerHTML=y;
+//    document.getElementById("y").innerHTML=x;
+}
+				
+//]]></script>
+<style type="text/css">
+form{font-family:"Courier New", Courier, monospace;}
+table{border-collapse:collapse;}
+table td{
+	border-style:solid;
+    border-width:1px;
+    padding:3px 2px 0px 10px;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+{% now "Y-m-d H:i:s" %}
+<form action="{{ PostPath }}" method="post">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+
+{% if ImageName %}
+<img src={{ MediaPath }}Line800x1.jpg id="xline1" width="1000" />
+<img src={{ MediaPath }}plots/{{ ImageName }}.png width=1000 height=800 onmousemove="mouseMove(event)" onmouseover="mouseOver()" id="chart1" />
+<img src={{ MediaPath }}Line1x600.jpg id="yline1" height="800" />
+{% endif %}
+
+{% if strTable %}
+	<BR>
+    <table>
+        {% autoescape off %}
+        {{ strTable }}
+        {% endautoescape %}
+    </table>	
+{% endif %}
+{% endblock %}

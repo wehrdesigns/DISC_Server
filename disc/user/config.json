@@ -1,0 +1,62 @@
+{
+    "CONFIG_VERSION":{
+        "options": [],
+        "value": "0.1",
+        "description": "This config file in json format is version controlled to match the software.  The goal is to create a utility that will interactively upgrade this config file as the software changes and items are added and/or removed.  Note that options for an item are for quick reference.  Instead of commenting out a value that you might want to save for later reference, add the value to the options list."
+    },
+    "HTTP_PORT": {
+        "options": ["8000","8002","8003"], 
+        "value": "8000", 
+        "description": ""
+    }, 
+    "HTTP_PROXY_PATH": {
+        "options": ["disc","disc2","disc3"], 
+        "value": "disc", 
+        "description": ""
+    },
+    "SQLITE_DB_FILENAME": {
+        "options": ["env.db","env2.db"], 
+        "value": "env.db", 
+        "description": "The sqlite database used by django."
+    },
+    "POST_ACCESSCODE": {
+        "options": [""], 
+        "value": "123", 
+        "description": "Create your own unique code that will be shared between DISC Server and the Controller (or other software) that will post data to the server.  This access code will help to authenticate the data being sent to the server."
+    },
+    "USE_SQLITE_QUEUED_MEMORY_MANAGER": {
+        "options": ["true","false"], 
+        "value": "true", 
+        "description": "Set to false to disble memory cache and read/write data directly to permanent storage.  Set to true to enable a memory cache that can improve performance and reduce hard drive activity (that might shorten its life)."
+    },
+    "MEMORY_ONLY": {
+        "options": ["true","false"], 
+        "value": "false", 
+        "description": "Only used with *USE_SQLITE_QUEUED_MEMORY_MANAGER=true*.  Set whether to only store data in memory (nothing is written to, or read from, file)."
+    },
+    "MINUTES_BETWEEN_COPY_MEMORY_TO_FILE": {
+        "options": ["1","10","30","60","120","240"], 
+        "value": "120", 
+        "description": "Only used with *USE_SQLITE_QUEUED_MEMORY_MANAGER=true*.  This number can be any size."
+    },
+    "START_ACTIONLABENGINE": {
+        "options": ["true","false"], 
+        "value": "true", 
+        "description": ""
+    },
+    "DJANGO_DEBUG": {
+        "options": ["true","false"], 
+        "value": "false", 
+        "description": "Enable/disable DEBUG in Django.  Enabling debug will drastically reduce security, so only enable for debugging."
+    },
+    "POST_DATA_HTTP_PORT": {
+        "options": ["0","9000","9002","9003"], 
+        "value": "9000", 
+        "description": "Set this port to zero to disable this server.  This is an additional server for posting data to the DISC Server.  Using this server for uploading data helps to keep the main server free for user requests."
+    },
+    "POST_DATA_HTTP_PROXY_PATH": {
+        "options": [""], 
+        "value": "", 
+        "description": "If a proxy is not needed, leave this blank and pass data directly to the port."
+    }
+}

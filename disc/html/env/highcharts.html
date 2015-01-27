@@ -1,0 +1,66 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} DISC HighCharts {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Server" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+<script src="/{{ProxyPath}}/static/jquery/jquery-1.10.2.min.js"></script>
+<script src="/{{ProxyPath}}/static/highcharts/js/highcharts.js"></script>
+
+<style type="text/css">
+form{font-family:"Courier New", Courier, monospace;}
+table{border-collapse:collapse;}
+table td{
+	border-style:solid;
+    border-width:1px;
+    padding:3px 2px 0px 10px;}
+</style>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+</head>
+{% now "Y-m-d H:i:s" %}
+<form action="{{ PostPath }}" method="post">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+
+<div id="hccontainer" style="width:100%; height:600px;"></div>
+
+<script>
+$(function () { 
+    $('#hccontainer').highcharts({
+        chart: {
+			zoomType: 'x',
+            type: 'line'
+        },
+        title: {
+            text: 'DISC Highcharts'
+        },
+        xAxis: {
+			type: 'datetime',
+		},
+        yAxis: {
+            title: {
+                text: ''
+            }
+        },
+		colors: {{ series_colors|safe }},
+        series: {{ series|safe|cut:'"' }}
+    });
+});
+</script>
+
+{% if strTable %}
+	<BR>
+    <table>
+        {% autoescape off %}
+        {{ strTable }}
+        {% endautoescape %}
+    </table>	
+{% endif %}
+{% endblock %}

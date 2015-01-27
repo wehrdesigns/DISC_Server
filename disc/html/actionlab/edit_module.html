@@ -1,0 +1,18 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} Edit Action Lab Module {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Server" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+{{ timestamp }}
+<form action="{{ PostPath }}" method="post">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

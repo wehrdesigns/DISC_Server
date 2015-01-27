@@ -1,0 +1,28 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} Backup Samewire Serf {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Server" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+<table border = "1">
+{% if TableIndex %}
+    <tr>
+    {% for s in TableIndex %}
+	    <td>{{ s }}</td>
+    {% endfor %}
+    </tr>
+{% endif %}
+</table>
+
+{{ timestamp }}<BR>
+<form action="{{ PostPath }}" method="post">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Backup" />
+</form>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} DISC Plot {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Server" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+
+{% now "Y-m-d_H-i-s" %}<BR>
+{% if ImageName %}
+<img src={{ MediaPath }}plots/{{ ImageName }}.png width=1000 height=800 onmousemove="mouseMove(event)" onmouseover="mouseOver()" id="chart1" />
+{% endif %}
+{% endblock %}

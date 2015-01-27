@@ -1,0 +1,25 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} DISC Home {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Server Home" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+
+<a href="/{{proxy_path}}/servertime">Server Time</a>
+<BR><BR><a href="/{{proxy_path}}/env/urls">List of urls for all installed apps (with help!)</a>
+<BR><BR><a href="/{{proxy_path}}/env/values">Latest Data Values</a>
+<BR><BR><a href="/{{proxy_path}}/env/plot">Plot by Matplotlib (image plot)</a>
+<BR><BR><a href="/{{proxy_path}}/env/highcharts">Plot by Highcharts (javascript plot)</a>
+<BR><BR><a href="/{{proxy_path}}/env/stats/1">1 hour statistics</a>
+<BR><BR><a href="/{{proxy_path}}/env/stats/12">12 hour statistics</a>
+<BR><BR><a href="/{{proxy_path}}/env/stats/24">24 hour statistics</a>
+<BR><BR><a href="/{{proxy_path}}/env/difference">Difference between two data streams</a>
+<BR><BR><a href="/{{proxy_path}}/env/values_quick">Latest Data *Quick*</a>
+	
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} DISC Stats {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Server" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+	{% now "Y-m-d_H-i-s" %}<BR>
+	<a href="/{{proxy_path}}/env/stats/1">1hr</a>
+	<a href="/{{proxy_path}}/env/stats/12">12hr</a>
+	<a href="/{{proxy_path}}/env/stats/24">24hr</a>
+    {% if listRend %}
+        <table>
+        {% for t in listTypes %}
+            <tr><th></th><th></th><th align=left>{{ t }}</th></tr>
+			<tr><td>Value</td><td></td><td>Name</td><td>Min</td><td>Mean</td><td>Max</td><td>StdDev</td><td>PkPk</td><td>Sum</td><td>Timebase</td><td>Mean*hrs</td></tr>
+            {% for v,Name,Type,Min,Ave,Max,StdDev,PkPk,Sum,timebase,aveXhrs,id in listRend %}
+                {% if t == Type %}
+					<tr><td>{{ v }}</td><td></td><td>{{ Name }}</td><td>{{ Min }}</td><td>{{ Ave }}</td><td>{{ Max }}</td><td>{{ StdDev }}</td><td>{{ PkPk }}</td><td>{{ Sum }}</td><td>{{ timebase }}</td><td>{{ aveXhrs }}</td><td><a href="/{{proxy_path}}/env/id_plot/{{ id }}/minutes/{{ minutes }}/{{ stoptime }}">plot</a></td></tr>
+                {% endif %}
+            {% endfor %}
+        {% endfor %}
+        </table>
+    {% endif %}
+{% endblock %}

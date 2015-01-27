@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} DISC App URL List {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC App URL List" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+	Some functions require elevated permissions.  They will require you to log in with a privileged account.<BR>
+{{ urlsbody|safe }}
+{% endblock %}

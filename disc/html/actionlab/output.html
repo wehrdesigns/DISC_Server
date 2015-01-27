@@ -1,0 +1,15 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} Action Lab Output {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Server" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+{{ timestamp }}
+{% if msg %} <BR> {{ msg|safe }} <BR> {% endif %}
+{% endblock %}

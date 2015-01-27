@@ -1,0 +1,22 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} DISC Home {% endblock %}
+
+{% block extrahead %}{{auto|safe}}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Server Home" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+<script type="text/javascript">
+location.hash = "bottomofpage";
+</script>
+
+{{serverlog|safe}}
+	
+<div id="bottomofpage"></div>
+{% endblock %}

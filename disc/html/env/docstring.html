@@ -1,0 +1,14 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} DISC Docstring {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Docstring" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+{{ docstringbody|safe }}
+{% endblock %}

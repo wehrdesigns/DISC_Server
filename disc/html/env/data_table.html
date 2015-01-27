@@ -1,0 +1,49 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} DISC DataTable {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Server" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+        <style type="text/css">
+        <!--
+            table
+            {
+                border-collapse:collapse;
+            }
+            table td
+            {
+                border-style:solid;
+                border-width:1px;
+                padding:3px 2px 0px 10px;
+            }
+        -->
+        </style>
+        <title>Data Table</title>
+
+	{% now "Y-m-d_H-i-s" %}<BR>
+    {% if strTable %}
+        <table>
+            {% autoescape off %}
+            {{ strTable }}
+            {% endautoescape %}
+        </table>
+    {% else %}
+        No data table available.
+    {% endif %}
+    <BR>
+    URL Options:<BR>
+    /data_table/timebase/points/start_time<BR>
+    the default options are /data_table/minutes/60/(server time now)<BR>
+    examples:<BR>
+    /data_table/minutes/60<BR>
+    /data_table/seconds/120<BR>
+    /data_table/hours/6<BR>
+    /data_table/days/3<BR>
+    /data_table/minutes/180/2020-06-01_13-33-00<BR>
+{% endblock %}

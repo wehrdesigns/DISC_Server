@@ -1,0 +1,50 @@
+<table border = "1">
+{% if TableIndex %}
+    <tr>
+    {% for s in TableIndex %}
+	    <td>{{ s }}</td>
+    {% endfor %}
+    </tr>
+{% endif %}
+</table>
+
+<table border = "1">
+    <tr>
+	    <td>Controller.Name</td>
+	    <td>HTMLTable.Name</td>
+	    <td>HTMLTable.id</td>
+	    <td>HTMLTable.URL</td>
+	    <td>SensorID</td>
+	    <td>Type</td>
+	    <td>Name</td>
+	    <td>Active</td>
+		<td>TableIndex</td>
+	    <td>Row</td>
+		<td>Column</td>
+	    <td>DataID</td>
+	    <td>ScaleFactors</td>
+		<td>Timebase</td>
+		<td>Period</td>
+    </tr>
+{% if qsHTMLTable %}
+    {% for s in qsHTMLTable %}
+        <tr>
+			<td>{{ s.HTMLTable.Controller.Name }}</td>
+        	<td>{{ s.HTMLTable.Name }}</td>
+        	<td>{{ s.HTMLTable.id }}</td>
+        	<td>{{ s.HTMLTable.URL|urlencode }}</td>
+        	<td>{{ s.id }}</td>
+        	<td>{{ s.DataID.Type }}</td>
+	        <td>{{ s.DataID.Name }}</td>
+	        <td>{{ s.DataID.Active }}</td>
+			<td>{{ s.TableIndex }}</td>
+	        <td>{{ s.Row }}</td>
+	        <td>{{ s.Column }}</td>
+	        <td>{{ s.DataID.ID }}</td>
+	        <td>{{ s.ScaleFactors }}</td>
+			<td>{{ s.DataID.Timebase }}</td>
+			<td>{{ s.DataID.Period }}</td>
+        </tr>
+    {% endfor %}
+{% endif %}
+</table>

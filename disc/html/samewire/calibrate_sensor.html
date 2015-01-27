@@ -1,0 +1,18 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} Calibrate Sensor {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Server" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+{{ timestamp }}<BR>
+<form action="{{ PostPath }}" method="post">{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Process" />
+</form>
+{% endblock %}

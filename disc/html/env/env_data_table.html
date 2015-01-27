@@ -1,0 +1,46 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} DISC Environment Data Table {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Server" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+<table border = "1">
+    <tr>
+	    <td>ID</td>
+	    <td>Type</td>
+	    <td>Name</td>
+	    <td>Location</td>
+	    <td>Group</td>
+	    <td>Color</td>
+	    <td>Active</td>
+	    <td>Public</td>
+	    <td>Type</td>
+	    <td>Order</td>
+	    <td>Notes</td>
+    </tr>
+{% if EnvData %}
+    {% for d in EnvData %}
+        <tr>
+		<td>{{ d.ID }}</td>
+        	<td>{{ d.Type }}</td>
+        	<td>{{ d.Name }}</td>
+        	<td>{{ d.Location }}</td>
+	        <td>{{ s.Group }}</td>
+        	<td>{{ d.Color }}</td>
+        	<td>{{ d.Active }}</td>
+			<td>{{ d.Public }}</td>
+        	<td>{{ d.Type }}</td>
+	        <td>{{ d.Order }}</td>
+        	<td>{{ d.Notes }}</td>
+        </tr>
+    {% endfor %}
+{% else %}
+    </table>
+{% endif %}
+{% endblock %}

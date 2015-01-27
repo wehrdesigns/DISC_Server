@@ -1,0 +1,23 @@
+{% extends "admin/base.html" %}
+{% load i18n %}
+
+{% block title %} Controller Urls {% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{% trans "DISC Server Home" %}</h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+{% block content %}
+
+	<h2>Controller Urls</h2>
+	<ul>
+		{% for c in controllers %}
+			<li><a href="http://{{ c.Host }}:{{ c.Port }}{{ c.Path }}/">{{ c.Name }}</a></li>
+			<li><a href="http://{{ c.Host }}:{{ c.Port }}{{ c.Path }}/output">{{ c.Name }}/output</a></li>
+			<BR>
+		{% endfor %}
+	</ul>
+	
+{% endblock %}
